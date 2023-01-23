@@ -33,7 +33,7 @@ public class FluxAndMonoGeneratorService {
 
     }
 
-    private Flux<String> namesFlux() {
+    public Flux<String> namesFlux() {
         return Flux.fromIterable(List.of("alex", "ben", "chloe"))
         //이런식으로 무한대의 요소를 처리 할 수 있음
                 .log(); //로그를 찍어보면 아래에서 일어나는 일을 알수있음
