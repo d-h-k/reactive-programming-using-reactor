@@ -82,4 +82,17 @@ public class FluxAndMonoGeneratorServiceTest {
                 .expectNext("KIM", "DONG", "HUN")
                 .verifyComplete();
     }
+
+    @Test
+    @DisplayName("플랙스이뮤터블리티")
+    void namesFluxImmutability() {
+        //놀랍게도 틀리다. 플렉스는 방어적 복사를 떄린다. 이뮤터블이다
+        var stringFlux = fms.namesFluxImmutability();
+        StepVerifier.create(stringFlux)
+                .expectNext("KIM", "DONG", "HUN")
+                .verifyComplete();
+        log.info("리액티브 스트림은 불변이다");
+
+
+    }
 }

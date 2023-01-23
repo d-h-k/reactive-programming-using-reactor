@@ -87,4 +87,12 @@ public class FluxAndMonoGeneratorService {
                 .log();
     }
 
+
+    public Flux<String> namesFluxImmutability() {
+        log.info("namesFluxImmutability()");
+        var fluxImmu = Flux.fromIterable(List.of("kim", "dong", "hun"));
+        fluxImmu.map(String::toUpperCase);
+        return fluxImmu;
+    }
+
 }
