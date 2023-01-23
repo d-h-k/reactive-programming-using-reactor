@@ -8,6 +8,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.util.List;
+
 @Slf4j
 public class FluxAndMonoGeneratorServiceTest {
 
@@ -22,9 +23,11 @@ public class FluxAndMonoGeneratorServiceTest {
         var fluxName = fms.namesFlux();
         //then
         StepVerifier.create(fluxName)
-                .expectNext("alex","ben", "chloe")
+                .expectNext("alex", "ben", "chloe")
                 .verifyComplete();
-    }    @DisplayName("플렉스검증실패")
+    }
+
+    @DisplayName("플렉스검증실패")
     @Test
     public void fluxFail() {
         //given
@@ -33,7 +36,7 @@ public class FluxAndMonoGeneratorServiceTest {
         var fluxName = fms.namesFlux();
         //then
         StepVerifier.create(fluxName)
-                .expectNext("ben","alex", "chloe")
+                .expectNext("ben", "alex", "chloe")
                 .verifyComplete();
         //
         log.warn("순서가 다르면 실패한다");
@@ -104,6 +107,31 @@ public class FluxAndMonoGeneratorServiceTest {
         //then
         StepVerifier.create(nameFlux)
                 .expectNextCount(1)
+                .verifyComplete();
+    }
+
+
+    @DisplayName("모노필터")
+    @Test
+    public void namesMonoFilter() {
+        //given
+
+        //when
+        //then
+        StepVerifier.create(fms.namesMono_map_filter(1))
+                .expectNextCount(1)
+                .verifyComplete();
+        StepVerifier.create(fms.namesMono_map_filter(2))
+                .expectNextCount(1)
+                .verifyComplete();
+        StepVerifier.create(fms.namesMono_map_filter(3))
+                .expectNextCount(1)
+                .verifyComplete();
+        StepVerifier.create(fms.namesMono_map_filter(4))
+                .expectNextCount(0)
+                .verifyComplete();
+        StepVerifier.create(fms.namesMono_map_filter(5))
+                .expectNextCount(0)
                 .verifyComplete();
     }
 }

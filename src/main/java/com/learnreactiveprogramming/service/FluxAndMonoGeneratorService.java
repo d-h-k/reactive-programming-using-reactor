@@ -104,4 +104,13 @@ public class FluxAndMonoGeneratorService {
                 .map(name ->  name.length()+ "-"+ name)
                 .log();
     }
+
+    public Mono<String> namesMono_map_filter(int stringLength) {
+        return Mono.just("alex")
+                .map(String::toUpperCase)
+                .filter(s -> s.length() > stringLength)
+                .log();
+    }
+
+
 }
