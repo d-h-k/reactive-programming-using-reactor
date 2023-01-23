@@ -74,4 +74,12 @@ public class FluxAndMonoGeneratorServiceTest {
                 .verifyComplete();
     }
 
+    @DisplayName("플랙스 맵")
+    @Test
+    void namesFluxMap() {
+        var stringFlux = fms.namesFluxMap();
+        StepVerifier.create(stringFlux)
+                .expectNext("KIM", "DONG", "HUN")
+                .verifyComplete();
+    }
 }

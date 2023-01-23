@@ -74,4 +74,17 @@ public class FluxAndMonoGeneratorService {
     }
 
 
+    public Flux<String> namesFluxMap() {
+        log.info("namesFluxMap()");
+        return Flux.fromIterable(List.of("kim", "dong", "hun"))
+                .map(String::toUpperCase)
+                .log();
+    }
+    public Mono<String> namesMonoMap() {
+        log.info("namesMonoMap()");
+        return Mono.just("alex")
+                //하나만 가능
+                .log();
+    }
+
 }
