@@ -92,7 +92,18 @@ public class FluxAndMonoGeneratorServiceTest {
                 .expectNext("KIM", "DONG", "HUN")
                 .verifyComplete();
         log.info("리액티브 스트림은 불변이다");
+    }
 
-
+    @DisplayName("필터기능")
+    @Test
+    public void namesFluxFilter() {
+        //given
+        final int stringLenLimit = 3;
+        //when
+        var nameFlux = fms.namesFluxFilter(stringLenLimit);
+        //then
+        StepVerifier.create(nameFlux)
+                .expectNextCount(1)
+                .verifyComplete();
     }
 }

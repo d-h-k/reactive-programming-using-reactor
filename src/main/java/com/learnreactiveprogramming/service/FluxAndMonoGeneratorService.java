@@ -95,4 +95,13 @@ public class FluxAndMonoGeneratorService {
         return fluxImmu;
     }
 
+
+    public Flux<String> namesFluxFilter(int stringLen) {
+        log.info("namesFluxFilter()");
+        return Flux.fromIterable(List.of("kim", "dong", "hun"))
+                .map(String::toUpperCase)
+                .filter(s -> s.length() > stringLen)
+                .map(name ->  name.length()+ "-"+ name)
+                .log();
+    }
 }
